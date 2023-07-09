@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarlOskarAnderson2", "KarlOskarAnderson2\KarlOskarAnderson2.csproj", "{04B9401C-4EA8-4B70-BF0A-5D7ED0E01111}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{04B9401C-4EA8-4B70-BF0A-5D7ED0E01111}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
