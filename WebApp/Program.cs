@@ -1,5 +1,7 @@
+using System.Text.Json;
 using AspNetStatic;
 
+Console.WriteLine(JsonSerializer.Serialize(args));
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,7 +15,6 @@ builder.Services.AddSingleton<IStaticPagesInfoProvider>(
     ));
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -30,8 +31,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
-app.GenerateStaticPages(app.Environment.WebRootPath, 
-    args,
-    dontOptimizeContent: true
+app.GenerateStaticPages(
+    args
 );
 app.Run();
