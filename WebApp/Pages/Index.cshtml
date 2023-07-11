@@ -46,7 +46,8 @@
                 {
                     Src = "/img/tempsens_version_1.1.2_thumbnail_h400.png",
                     Alt = "tempsens"
-                }
+                },
+                ReadMoreLink = "Posts/Sirowa"
             };
     
             var projects = new [] { tempsens, tempsens};
@@ -85,7 +86,7 @@
                                 <a href="@link.Href">@link.Display</a>
                             }
                         </div>
-                        <button class="btn btn-primary mt-3">Read More</button>
+                        <a class="btn btn-primary mt-3" href="@tempsens.ReadMoreLink">Read More</a>
                     </div>
                     @if (i % 2 == 0)
                     {

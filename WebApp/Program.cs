@@ -1,7 +1,6 @@
-using System.Text.Json;
 using AspNetStatic;
+using AspNetStatic.Models;
 
-Console.WriteLine(JsonSerializer.Serialize(args));
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,7 +9,7 @@ builder.Services.AddSingleton<IStaticPagesInfoProvider>(
     new StaticPagesInfoProvider(
         new PageInfo[]
         {
-            new("/Privacy"),
+            new("/Index"),
         }
     ));
 
@@ -32,6 +31,10 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.GenerateStaticPages(
-    args
+    new GenerateStaticPagesOptions()
+    {
+        DestinationRoot = GenerateStaticPagesOptions.ParseOptions(args, app.Environment.WebRootPath).DestinationRoot,
+        DontOptimizeContent = true
+    }
 );
 app.Run();
