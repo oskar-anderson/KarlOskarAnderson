@@ -10,6 +10,7 @@ builder.Services.AddSingleton<IStaticPagesInfoProvider>(
         new PageInfo[]
         {
             new("/Index"),
+            new("/Posts/Sirowa"),
         }
     ));
 

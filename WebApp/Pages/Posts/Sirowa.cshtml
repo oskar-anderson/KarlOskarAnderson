@@ -11,18 +11,18 @@
             Monitoring is required by Ravimiamet for storage of medicinal goods.
         </p>
         <p>
-            Warehouse uses two types of Comet sensors stationary and remote.
+            Two types of Comet sensors are used: stationary and portable.
             Stationary sensors connect to Tempsens SOAP API.
-            Remote sensor can be connected user machine by mini-USB. 
+            Portable sensors can be connected to user machine by mini-USB. 
             Sensor data can then be downloaded as a CSV file though Comet Vision application.
             The CSV can subsequently be uploaded in Tempsens front-end application that uses REST API internally for saving the parsed data.
         </p>
         <p>
-            Application uses binning and clustering algorithms to help data visulize data.
+            Application uses binning and clustering algorithms to help visulize data.
             <p>
-                Binning serves both tecnical and user specific needs. 
-                Binning algorithm creates uniformed period buckets that contain multiple sensor reading.
-                This can speed up chart drawing visualization time for large periods and also increase resulting chart readability.
+                Binning serves both technical and user specific needs. 
+                Binning algorithm creates uniformed period buckets that contain multiple sensor readings.
+                This speeds up chart drawing time for large periods and also increases resulting chart readability.
                 The buckets also allows different visualization behavior like average value and most extreme value.
                 Lastly empty buckets allow to easily visualize alerts (buckets should contain values).
             </p>
@@ -37,7 +37,7 @@
                 Warehouse sensors send temperture and humidity reading periodically to Tempsens application through SOAP API.
             </li>
             <li>
-                Application saves request values to MySQL/MariaDb database.
+                Application saves request values to MySQL/MariaDB database.
             </li>
             <li>
                 User enters the Tempsens frontend website.
@@ -46,7 +46,7 @@
                 User enters start and end date of period to overview.
             </li>
             <li>
-                Application loads sensor readings between selected period and calculates alerts through clustering algorith.
+                Application loads sensor readings between selected period and calculates alerts through clustering algorithm.
             </li>
             <li>
                 User can see sensor alerts and visualize sensor readings (Google Charts)

@@ -10,10 +10,4 @@
       <ProjectReference Include="..\AspNetStatic\src\AspNetStatic\AspNetStatic.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Update="wwwroot\sirowa.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-    </ItemGroup>
-
 </Project>
