@@ -52,6 +52,7 @@
 }
 
 .my-container {
+  padding: 0 1em;
   margin: 0 auto;
   width: 1000px;
 }
@@ -103,6 +104,10 @@ h4, .h4 {
 
 .taglist li:last-child:after {
   content: "";
+}
+
+li:not(:last-child) {
+  margin-bottom: 16px;
 }
 
 .flex50-responsive {

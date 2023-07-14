@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="/css/fontawesome-free-6.4.0-web/css/fontawesome.css" />
     <link rel="stylesheet" href="/css/fontawesome-free-6.4.0-web/css/brands.css" />
     <link rel="stylesheet" href="/css/fontawesome-free-6.4.0-web/css/solid.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/intellij-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 
-    <link rel="stylesheet" href="/css/site.css?v=PNd-FFrUJdn2Coyjsqvd3ml6q7pwQw385iuJ9Ql1fG8" />
+    <link rel="stylesheet" href="/css/site.css?v=7Ldx9IjComz2PDKNwbA2BWuqArmW-HoDb8vipDOiX1c" />
 </head>
 <body style="margin: 0; padding: 0;   display: flex;
                                             min-height: 100vh;
@@ -47,58 +49,161 @@
         <h4 class="fw-semibold">Tempsens - temperature monitoring application</h4>
     </div>
     <div>
-        <p>
-            Developed full stack warehouse temperature monitoring web application named Tempsens to monitor product storage compliance with temperture requirements.
-            Monitoring is required by Ravimiamet for storage of medicinal goods.
-        </p>
-        
-        <img style="object-fit: contain; width: 100%; max-height: 600px;" src="/img/tempsens_version_1.1.2_thumbnail_h400.png" alt="Tempsens user interface">
-        <p>
-            Two types of Comet sensors are used: stationary and portable.
-            Stationary sensors connect to Tempsens SOAP API.
-            Portable sensors can be connected to user machine by mini-USB. 
-            Sensor data can then be downloaded as a CSV file though Comet Vision application.
-            The CSV can subsequently be uploaded in Tempsens front-end application that uses REST API internally for saving the parsed data.
-        </p>
-        <p>
-            Application uses binning and clustering algorithms to help visulize data.
+        <div>
             <p>
-                Binning serves both technical and user specific needs. 
+                Developed full stack warehouse temperature monitoring web application named Tempsens to monitor product storage compliance with temperture requirements.
+                Monitoring is required by Ravimiamet for storage of medicinal goods.
+            </p>
+
+            <figure>
+                <img style="object-fit: contain; width: 100%; max-height: 600px;" src="/img/tempsens_version_1.1.2_thumbnail.jpg" alt="Tempsens user interface">
+                <figcaption class="figure-caption text-center">UI chart visualization view.</figcaption>
+            </figure>
+            <p>
+                Two types of Comet sensors are used: stationary and portable.
+                Stationary sensors connect to Tempsens SOAP API.
+                Portable sensors can be connected to user machine by mini-USB.
+                Sensor data can then be downloaded as a CSV file though Comet Vision application.
+                The CSV can subsequently be uploaded in Tempsens front-end application that uses REST API internally for saving the parsed data.
+            </p>
+        </div>
+        <div>
+            <h4>
+                Data flow diagram
+            </h4>
+            <figure>
+                <img style="object-fit: contain;
+                            width: 100%;
+                            max-height: 600px;" src="/img/tempsens-logic-diagram.png" alt="Tempsens flow diagram">
+                <figcaption class="figure-caption text-center">Tempsens logic flow diagram.</figcaption>
+            </figure>
+            <p>
+                Flow of the application for stationary sensors consists of data being sent to Tempsens application through SOAP API and the application in turn saving it a MySQL/MariaDB database.
+                Mobile sensors do not have a SOAP interface and require users to upload CSV files through the Tempsens application. 
+                In order to download the CSV file from a portable sensor a mini-USB and computer with Comet Vision application installed is required.
+            </p>
+        
+            <p>
+                The application flow for the user is based on initial server side rendering and subsequent JavaScript based interactivity.
+                For the user this means that when loading the selected period of data the entire page will be refreshed.
+                Site interactivity logic allows:
+            </p>
+            <ul>
+                <li>Uploading CSV data and saving it into database though the backend via REST API standard.</li>
+                <li>Defining visualization settings and behaviour for chart drawing.</li>
+                <li>Visualizing a line chart accoring to user settings.</li>
+                <li>Downloading chart image PNG and sensor data CSV.</li>
+            </ul>
+            <p>
+                Internally sensor create, update and delete operations and uploading parsed CSV data is implemented using REST API standard.
+            </p>
+        </div>
+        
+        <div>
+            <h4>Algorithms</h4>
+            <p>
+                Application uses binning and clustering algorithms to help visulize data.
+                Binning serves both technical and user specific needs.
                 Binning algorithm creates uniformed period buckets that contain multiple sensor readings.
+            </p>
+            <pre style="display: flex;
+                                         justify-content: center;">
+                <code class="language-js">
+const getBuckets = (dateFrom, dateTo, step) => {
+    let buckets = [];
+    let bucketStartDate = dateFrom;
+    for (let i = 1; ; i++) {
+        let bucketNextDate = dateFrom.add(step * i, 'minutes');
+        if (bucketNextDate >= dateTo) break;
+        buckets.push({
+           startDateDate: bucketStartDate,
+           endDateDate: bucketNextDate,
+           row: []  // will contain y value of the bucket for selected sensors
+        });
+        bucketStartDate = bucketNextDate;
+    }
+    return buckets;
+}
+                </code>
+            </pre>
+            <p>
                 This speeds up chart drawing time for large periods and also increases resulting chart readability.
                 The buckets also allows different visualization behavior like average value and most extreme value.
                 Lastly empty buckets allow to easily visualize alerts (buckets should contain values).
             </p>
+
             <p>
-                Clustering allows for more accurate way to show sensor alerts for both value out of bounds errors and missing value errors.
+                Clustering allows chaining multiple readings for more accurate way to show sensor alerts for both value out of bounds errors and missing value errors.
             </p>
-        <p>
-            Typical application workflow from sensor to user:
-        </p>
-        <ol>
-            <li>
-                Warehouse sensors send temperture and humidity reading periodically to Tempsens application through SOAP API.
-            </li>
-            <li>
-                Application saves request values to MySQL/MariaDB database.
-            </li>
-            <li>
-                User enters the Tempsens frontend website.
-            </li>
-            <li>
-                User enters start and end date of period to overview.
-            </li>
-            <li>
-                Application loads sensor readings between selected period and calculates alerts through clustering algorithm.
-            </li>
-            <li>
-                User can see sensor alerts and visualize sensor readings (Google Charts)
-            </li>
-        </ol>
-        Visual representation of the application workflow:
-        <img style="object-fit: contain;
-                    width: 100%;
-                    max-height: 600px;" src="/img/tempsens-logic-diagram.png" alt="Tempsens logic diagram">
+            <pre style="display: flex;
+                        justify-content: center;">
+                <code class="language-php">
+switch ($state) {
+    case "isPartOfSameChain":
+        // leads to isPartOfSameChain or isPartOfChainBreak
+        if (empty($chain)){ $chain[] = $current; }
+        $chain[] = $next;
+        if ($isLast) { $result[] = $chain; }
+        break;
+    case "isPartOfChainBreak":
+        // leads to isPartOfSameChain or isNotPartOfChain
+        $result[] = $chain;
+        $chain = [];
+        if ($isLast) { $result[] = [$next]; }
+        break;
+    case "isNotPartOfChain":
+        // leads to isPartOfSameChain or isNotPartOfChain
+        $result[] = [$current];
+        if ($isLast) { $result[] = [$next]; }
+        break;
+}
+                </code>
+            </pre>
+            <p>
+                Large data sizes demand bucket filtering operation to be optimized.
+                This means reducing time complexity from O(n**2) to O(n) by making use of ordered arrays.
+            </p>
+            <pre style="display: flex;
+                        justify-content: center;">
+                <code class="language-php">
+function filterSortedArrayValuesBetweenDates(sensorReadings, before, after, low) {
+    // this would be more readable, but much slower duo to searching the entire array
+    // sensorReadings.filter(x => before <= x.date && after > x.date);
+  
+    let result = [];
+    while (low < sensorReadings.length) {
+        let obj = sensorReadings[low];
+        if (after <= obj.date) {
+            break;
+        }
+        if (before <= obj.date) {
+            result.push(obj);
+        }
+        low++;
+    }
+    return {
+        result: result,
+        low: low
+    };
+}
+                </code>
+            </pre>
+            <div>
+                <p>
+                    The last two algorithms are responsible for generating sensor alerts
+                </p>
+                <figure>
+                    <img style="object-fit: contain;
+                                width: 100%;
+                                max-height: 600px;" src="/img/tempsens-alerts.png" alt="List of sensor alerts">
+                    <figcaption class="figure-caption text-center">List of sensor alerts.</figcaption>
+                </figure>
+            </div>
+            <p>
+                All these complex algorithms result in the application solving user needs and making the site feel responsive.
+                I certanly found solving these problems rewarding.
+            </p>
+        </div>
     </div>
 </div>
     </main>
@@ -129,4 +234,5 @@
 
 
 </body>
+<script>hljs.highlightAll();</script>
 </html>
