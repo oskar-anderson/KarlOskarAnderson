@@ -10,4 +10,8 @@
       <ProjectReference Include="..\AspNetStatic\src\AspNetStatic\AspNetStatic.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Pages\Partials" />
+    </ItemGroup>
+
 </Project>

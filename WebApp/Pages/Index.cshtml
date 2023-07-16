@@ -22,7 +22,7 @@
     </div>
 </section>
 
-<div class="my-container">
+<div class="content-container-lg">
     <div class="py-5">
         <h2 class="pb-5">Projects</h2>
         
@@ -57,41 +57,43 @@
             {
                 var project = projects[i];
                 var columnClass = i % 2 == 0 ? "flex-column" : "flex-column-reverse";
+                <h4 class="fw-semibold">@project.Title</h4>
                 <div class="d-flex flex-md-row @columnClass gap-3 mb-3">
                     @if (i % 2 == 1)
                     {
                         // This should be identical to the even image element after. Could this element be stored in a variable
                         <div class="col-12 col-md-6 overflow-hidden d-flex justify-content-center">
-                            <img src="@project.Image.Src" alt="@project.Image.Alt" style="height: 400px; object-fit: cover;">
+                            <img src="@project.Image.Src" alt="@project.Image.Alt" style="max-width: 100%;">
                         </div>
                     }
                     <div class="col-12 col-md-6">
-                        <h4 class="fw-semibold">@project.Title</h4>
                         <p>
                             @project.Description
                         </p>
-                        <div>
+                        <div class="my-3">
                             <span class="fw-semibold">Tech stack:</span>
                             <ul class="taglist">
                                 @foreach (var tech in project.TechStack)
                                 {
-                                    <li>@tech</li>
+                                    <li>
+                                        <span class="badge rounded-pill text-bg-light">@tech</span>
+                                    </li>
                                 }
                             </ul>
                         </div>
-                        <div>
+                        <div class="my-3">
                             <span class="fw-semibold">Link:</span>
                             @foreach (var link in @project.Links)
                             {
                                 <a href="@link.Href">@link.Display</a>
                             }
                         </div>
-                        <a class="btn btn-primary mt-3" href="@tempsens.ReadMoreLink">Read More</a>
+                        <a class="btn btn-primary" href="@tempsens.ReadMoreLink">Read More</a>
                     </div>
                     @if (i % 2 == 0)
                     {
                         <div class="col-12 col-md-6 overflow-hidden d-flex justify-content-center">
-                            <img src="@project.Image.Src" alt="@project.Image.Alt" style="height: 400px; object-fit: cover;">
+                            <img src="@project.Image.Src" alt="@project.Image.Alt" style="max-width: 100%;">
                         </div>
                     }
                 </div>

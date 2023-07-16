@@ -1,23 +1,30 @@
 @page
+@using WebApp.Pages.Partials;
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model WebApp.Pages.Posts.Sirowa
+@{
+    ViewData["Title"] = "Tempsens";
+}
 
-<div class="my-container">
+<div class="content-container px-4">
     <div class="mt-3 mb-3">
         <h4 class="fw-semibold">Tempsens - temperature monitoring application</h4>
     </div>
     <div>
         <div>
             <p>
-                Developed full stack warehouse temperature monitoring web application named Tempsens to monitor product storage compliance with temperture requirements.
+                Developed entire full stack warehouse temperature monitoring web application named Tempsens to monitor product storage compliance with temperature requirements.
                 Monitoring is required by Ravimiamet for storage of medicinal goods.
             </p>
-
-            <figure>
-                <img style="object-fit: contain; width: 100%; max-height: 600px;"
-                     src="~/img/tempsens_version_1.1.2_thumbnail.jpg"
-                     alt="Tempsens user interface">
-                <figcaption class="figure-caption text-center">UI chart visualization view.</figcaption>
-            </figure>
+            
+            @{
+                var userInterfaceImage = new CenteredImageWithCaptionCode
+                {
+                    ImageSrc = "img/tempsens_version_1.1.2_thumbnail.jpg", 
+                    ImageCaption = "Tempsens main user interface."
+                };
+            }
+            <partial name="CenteredImageWithCaption" model="userInterfaceImage" />
             <p>
                 Two types of Comet sensors are used: stationary and portable.
                 Stationary sensors connect to Tempsens SOAP API.
@@ -30,13 +37,14 @@
             <h4>
                 Data flow diagram
             </h4>
-            <figure>
-                <img style="object-fit: contain;
-                            width: 100%;
-                            max-height: 600px;" 
-                     src="~/img/tempsens-logic-diagram.png" alt="Tempsens flow diagram">
-                <figcaption class="figure-caption text-center">Tempsens logic flow diagram.</figcaption>
-            </figure>
+            @{
+                var logicDiagramImage = new CenteredImageWithCaptionCode
+                {
+                    ImageSrc = "img/tempsens-logic-diagram-3.png", 
+                    ImageCaption = "Tempsens application flow diagram."
+                };
+            }
+            <partial name="CenteredImageWithCaption" model="logicDiagramImage" />
             <p>
                 Flow of the application for stationary sensors consists of data being sent to Tempsens application through SOAP API and the application in turn saving it a MySQL/MariaDB database.
                 Mobile sensors do not have a SOAP interface and require users to upload CSV files through the Tempsens application. 
@@ -44,126 +52,129 @@
             </p>
         
             <p>
-                The application flow for the user is based on initial server side rendering and subsequent JavaScript based interactivity.
-                For the user this means that when loading the selected period of data the entire page will be refreshed.
+                The application flow for the user is based on initial server-side rendering and subsequent JavaScript based interactivity.
+                For the user this means that when loading the selected period of data, the entire page will be refreshed.
                 Site interactivity logic allows:
             </p>
             <ul>
                 <li>Uploading CSV data and saving it into database though the backend via REST API standard.</li>
-                <li>Defining visualization settings and behaviour for chart drawing.</li>
-                <li>Visualizing a line chart accoring to user settings.</li>
+                <li>Defining visualization settings and behavior for chart drawing.</li>
+                <li>Visualizing a line chart according to user settings.</li>
                 <li>Downloading chart image PNG and sensor data CSV.</li>
             </ul>
             <p>
                 Internally sensor create, update and delete operations and uploading parsed CSV data is implemented using REST API standard.
+                The application routing is implemented with Slim library and charting is done with Google Charts.
+                Bootstrap is used for interactivity like modals and collapsible elements.
             </p>
         </div>
         
         <div>
             <h4>Algorithms</h4>
-            <p>
-                Application uses binning and clustering algorithms to help visulize data.
-                Binning serves both technical and user specific needs.
-                Binning algorithm creates uniformed period buckets that contain multiple sensor readings.
-            </p>
-            <pre style="display: flex;
-                                         justify-content: center;">
-                <code class="language-js">
-const getBuckets = (dateFrom, dateTo, step) => {
+            <div>
+                <p>
+                    Application uses binning and clustering algorithms to help visualize data.
+                </p>
+                <p>
+                    Binning serves both technical and user specific needs.
+                    Binning algorithm creates uniformed period buckets that contain multiple sensor readings.
+                    This speeds up chart drawing time for large periods and also increases resulting chart readability.
+                    The buckets also allow different visualization behavior like average value, most extreme value and show alert (value 0) on missing value.
+                </p>        
+            </div>
+            <pre><code class="language-js">const getBuckets = (dateFrom, dateTo, step) => {
     let buckets = [];
-    let bucketStartDate = dateFrom;
+    let bucketCurrentDate = dateFrom;
     for (let i = 1; ; i++) {
         let bucketNextDate = dateFrom.add(step * i, 'minutes');
         if (bucketNextDate >= dateTo) break;
         buckets.push({
-           startDateDate: bucketStartDate,
-           endDateDate: bucketNextDate,
+           startDate: bucketCurrentDate,
+           endDate: bucketNextDate,
            row: []  // will contain y value of the bucket for selected sensors
         });
-        bucketStartDate = bucketNextDate;
+        bucketCurrentDate = bucketNextDate;
     }
     return buckets;
 }
-                </code>
-            </pre>
-            <p>
-                This speeds up chart drawing time for large periods and also increases resulting chart readability.
-                The buckets also allows different visualization behavior like average value and most extreme value.
-                Lastly empty buckets allow to easily visualize alerts (buckets should contain values).
-            </p>
-
-            <p>
-                Clustering allows chaining multiple readings for more accurate way to show sensor alerts for both value out of bounds errors and missing value errors.
-            </p>
-            <pre style="display: flex;
-                        justify-content: center;">
-                <code class="language-php">
-switch ($state) {
-    case "isPartOfSameChain":
-        // leads to isPartOfSameChain or isPartOfChainBreak
-        if (empty($chain)){ $chain[] = $current; }
-        $chain[] = $next;
-        if ($isLast) { $result[] = $chain; }
-        break;
-    case "isPartOfChainBreak":
-        // leads to isPartOfSameChain or isNotPartOfChain
-        $result[] = $chain;
-        $chain = [];
-        if ($isLast) { $result[] = [$next]; }
-        break;
-    case "isNotPartOfChain":
-        // leads to isPartOfSameChain or isNotPartOfChain
-        $result[] = [$current];
-        if ($isLast) { $result[] = [$next]; }
-        break;
-}
-                </code>
-            </pre>
+</code></pre>
             <p>
                 Large data sizes demand bucket filtering operation to be optimized.
-                This means reducing time complexity from O(n**2) to O(n) by making use of ordered arrays.
+                This means reducing time complexity from O(n^2) to O(n) by making use of ordered array properties.
             </p>
-            <pre style="display: flex;
-                        justify-content: center;">
-                <code class="language-php">
-function filterSortedArrayValuesBetweenDates(sensorReadings, before, after, low) {
-    // this would be more readable, but much slower duo to searching the entire array
-    // sensorReadings.filter(x => before <= x.date && after > x.date);
-  
+            <pre><code class="language-php">function filterSortedArrayValuesBetweenDates(sortedByDateObjArr, before, after, low) {
+    // sortedByDateObjArr.filter(x => before <= x.date && after > x.date);  // too slow
     let result = [];
-    while (low < sensorReadings.length) {
-        let obj = sensorReadings[low];
-        if (after <= obj.date) {
-            break;
-        }
-        if (before <= obj.date) {
-            result.push(obj);
-        }
-        low++;
+    for (; low < sortedByDateObjArr.length; low++) {
+        let obj = sortedByDateObjArr[low];
+        if (after <= obj.date) break;
+        if (before <= obj.date) result.push(obj);
     }
     return {
         result: result,
         low: low
     };
 }
-                </code>
-            </pre>
+</code></pre>
+            <p>
+                Clustering allows chaining multiple readings for more accurate way to show sensor alerts for both 'value out of bounds' errors and 'missing value' errors.
+            </p>
+            <pre><code class="language-php">public function createChain(array $sortedByDateObjArr, callable $isPartOfSameChainCallback): array {
+    $result = [];
+    $chain = [];
+    // ... ommitted special cases for size 1 and 0
+    for ($i = 0; $i < sizeof($sortedByDateObjArr) - 1; $i++) {
+        $current = $sortedByDateObjArr[$i];
+        $next = $sortedByDateObjArr[$i + 1];
+        $state = $this->getState($current, $next, $isPartOfSameChainCallback, sizeof($chain));
+        $isLast = $i === sizeof($sortedByDateObjArr) - 2;
+
+        switch ($state) {
+            case "isPartOfSameChain":
+                // leads to isPartOfSameChain or isPartOfChainBreak
+                if (empty($chain)){ $chain[] = $current; }
+                $chain[] = $next;
+                if ($isLast) { $result[] = $chain; }
+                break;
+            case "isPartOfChainBreak":
+                // leads to isPartOfSameChain or isNotPartOfChain
+                $result[] = $chain;
+                $chain = [];
+                if ($isLast) { $result[] = [$next]; }
+                break;
+            case "isNotPartOfChain":
+                // leads to isPartOfSameChain or isNotPartOfChain
+                $result[] = [$current];
+                if ($isLast) { $result[] = [$next]; }
+                break;
+        }
+    }
+    return $result;
+}
+</code></pre>
             <div>
                 <p>
-                    The last two algorithms are responsible for generating sensor alerts
+                    This is what the final result looks like in the UI.
                 </p>
-                <figure>
-                    <img style="object-fit: contain;
-                                width: 100%;
-                                max-height: 600px;"
-                         src="~/img/tempsens-alerts.png" alt="List of sensor alerts">
-                    <figcaption class="figure-caption text-center">List of sensor alerts.</figcaption>
-                </figure>
+                @{
+                    var sensorAlertsImage = new CenteredImageWithCaptionCode
+                    {
+                        ImageSrc = "img/tempsens-alerts.png", 
+                        ImageCaption = "List of sensor alerts."
+                    };
+                }
+                <partial name="CenteredImageWithCaption" model="sensorAlertsImage" />
             </div>
-            <p>
-                All these complex algorithms result in the application solving user needs and making the site feel responsive.
-                I certanly found solving these problems rewarding.
-            </p>
+            <h4>Last words</h4>
+            <div>
+                <p>
+                    The finished application solved all business requirements needed to overview warehouse temperature.
+                </p>
+                <p>
+                    Although it looked like a relatively simple application at first, the amount of code needed to display a chart proved shocking. 
+                    The algorithms needed to solve user needs certainly proved to be a interesting and rewarding challenge to solve.
+                </p>
+            </div>
         </div>
     </div>
 </div>
