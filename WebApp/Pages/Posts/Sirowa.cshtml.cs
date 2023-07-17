@@ -8,6 +8,8 @@ public class Sirowa : PageModel
 {
     public string Title { get; set; } = "title";
     public string Body { get; set; }
+
+    public string Content { get; set; } = "";
     
     private readonly IWebHostEnvironment _environment;
 
@@ -19,16 +21,10 @@ public class Sirowa : PageModel
     
     public async Task OnGet()
     {
-        return;
-        
-        var path = Path.Combine(_environment.ContentRootPath, "wwwroot", "sirowa.json");
+        var path = Path.Combine(_environment.ContentRootPath, "wwwroot", "Posts", "sirowa.md");
         using (var reader = new StreamReader(path))
         {
-            var json = reader.ReadToEnd();
-            // This does not work - separate modal class is required
-            Sirowa items = JsonSerializer.Deserialize<Sirowa>(json);
-            Title = items.Title;
-            Body = items.Body;
+            Content = reader.ReadToEnd();
         }
         /*
             

@@ -14,4 +14,8 @@
       <Folder Include="Pages\Partials" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Markdig.SyntaxHighlighting" Version="1.1.7" />
+    </ItemGroup>
+
 </Project>
