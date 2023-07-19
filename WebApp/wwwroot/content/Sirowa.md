@@ -129,3 +129,4 @@ The finished application solved all business requirements needed to overview war
 
 Although it looked like a relatively simple application at first, the amount of code needed to display a chart proved shocking.
 The algorithms needed to solve user needs certainly proved to be a interesting and rewarding challenge to solve.
+

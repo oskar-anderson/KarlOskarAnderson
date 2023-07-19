@@ -6,9 +6,6 @@ namespace WebApp.Pages.Posts;
 
 public class Sirowa : PageModel
 {
-    public string Title { get; set; } = "title";
-    public string Body { get; set; }
-
     public string Content { get; set; } = "";
     
     private readonly IWebHostEnvironment _environment;
@@ -21,7 +18,7 @@ public class Sirowa : PageModel
     
     public async Task OnGet()
     {
-        var path = Path.Combine(_environment.ContentRootPath, "wwwroot", "Posts", "sirowa.md");
+        var path = Path.Combine(_environment.ContentRootPath, "wwwroot", "content", "sirowa.md");
         using (var reader = new StreamReader(path))
         {
             Content = reader.ReadToEnd();

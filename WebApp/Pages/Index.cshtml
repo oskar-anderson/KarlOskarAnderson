@@ -49,16 +49,49 @@
                 },
                 ReadMoreLink = "Posts/Sirowa"
             };
+            var maanteeametTimescanner = new
+            {
+                Title = "Maanteeamet Timescanner",
+                Description = @"Developed a web scraper for getting info from Maanteeamet e-service about available driving exam times.",
+                TechStack = new [] { "Python", "Selenium" },
+                Links = new []
+                {
+                    new
+                    {
+                        Display = "Github",
+                        Href = "https://github.com/oskar-anderson/maanteeamet-timescanner"
+                    }
+                },
+                Image = new
+                {
+                    Src = "/img/maanteeamet_timescanner_used_tech.png",
+                    Alt = "Maanteeamet Timescanner"
+                },
+                ReadMoreLink = "Posts/MaanteeametTimescanner"
+            };
     
-            var projects = new [] { tempsens, tempsens};
+            var projects = new [] { tempsens, maanteeametTimescanner };
         }
         <div>
             @for(var i = 0; i < projects.Length; i++)
             {
                 var project = projects[i];
                 var columnClass = i % 2 == 0 ? "flex-column" : "flex-column-reverse";
-                <h4 class="fw-semibold">@project.Title</h4>
-                <div class="d-flex flex-md-row @columnClass gap-3 mb-3">
+                <div class="d-flex flex-md-row gap-3 mb-2">
+                    <div class="col-12 col-md-6 d-flex justify-content-center">
+                        @if (i % 2 != 1)
+                        {
+                            <h4 class="fw-semibold">@project.Title</h4>
+                        }
+                    </div>
+                    <div class="col-12 col-md-6 d-flex justify-content-center">
+                        @if (i % 2 == 1)
+                        {
+                            <h4 class="fw-semibold">@project.Title</h4>
+                        }
+                    </div>
+                </div>
+                <div class="d-flex flex-md-row @columnClass gap-3 mb-5">
                     @if (i % 2 == 1)
                     {
                         // This should be identical to the even image element after. Could this element be stored in a variable
