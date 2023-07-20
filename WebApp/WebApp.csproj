@@ -11,11 +11,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Pages\Partials" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="EPS.Extensions.YamlMarkdown" Version="6.0.2" />
       <PackageReference Include="Markdig.SyntaxHighlighting" Version="1.1.7" />
+      <PackageReference Include="YamlDotNet" Version="13.1.1" />
     </ItemGroup>
 
 </Project>

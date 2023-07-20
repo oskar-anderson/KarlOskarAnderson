@@ -15,7 +15,7 @@ builder.Services.AddSingleton<IStaticPagesInfoProvider>(
         new PageInfo[]
         {
             new("/Index"),
-            new("/Posts/Sirowa"),
+            new("/Posts/Tempsens"),
             new("/Posts/MaanteeametTimescanner"),
         }
     ));

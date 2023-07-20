@@ -1,4 +1,30 @@
-Developed entire full stack warehouse temperature monitoring web application named Tempsens to monitor product storage compliance with temperature requirements.
+---
+{
+    "Title": "Tempsens",
+    "Description": "Developed a full stack warehouse temperature and humidity monitoring system. Implemented SOAP and REST APIs for backend and chart visualization for frontend. Implemented binning and clustering algorithms for data visualization and alert observation.",
+    "TechStack": [
+        "PHP", 
+        "Slim", 
+        "JS",
+        "Bootstrap",
+        "Google Charts",
+        "MySQL"
+    ],
+    "Links": [
+        {
+            "Display": "Github",
+            "Href": "https://github.com/oskar-anderson/Tempsens"
+        }
+    ],
+    "Image":
+    {
+        "Src": "/img/tempsens_version_1.1.2_thumbnail_h400.png",
+        "Alt": "tempsens"
+    },
+    "ReadMoreLink": "Posts/Tempsens"
+}
+---
+Developed entire full stack Sirowa warehouse temperature monitoring web application named Tempsens to monitor product storage compliance with temperature requirements.
 Monitoring is required by Ravimiamet for storage of medicinal goods.
 
 ^^^

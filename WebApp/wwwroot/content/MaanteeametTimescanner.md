@@ -1,3 +1,25 @@
+---
+{
+    "Title": "Maanteeamet Timescanner",
+    "Description": "Developed a web scraper for getting info from Maanteeamet e-service about available driving exam times.",
+    "TechStack": [ 
+        "Python", 
+        "Selenium"
+    ],
+    "Links": [
+        {
+            "Display": "Github",
+            "Href": "https://github.com/oskar-anderson/maanteeamet-timescanner"
+        }
+    ],
+    "Image":
+    {
+        "Src": "/img/maanteeamet_timescanner_used_tech.png",
+        "Alt": "Maanteeamet Timescanner"
+    },
+    "ReadMoreLink": "Posts/MaanteeametTimescanner"
+}
+---
 Developed a web scraper for getting info from Maanteeamet e-service about available driving exam times.
 The program is written in Python with Selenium browser API and using Gmail SMTP.
 

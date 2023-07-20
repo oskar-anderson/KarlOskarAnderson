@@ -26,56 +26,10 @@
     <div class="py-5">
         <h2 class="pb-5">Projects</h2>
         
-        @{
-            var tempsens = new
-            {
-                Title = "Tempsens",
-                Description = @"Developed a full stack warehouse temperature and humidity monitoring system.
-                                    Implemented SOAP and REST APIs for backend and chart visualization for frontend.
-                                    Implemented binning and clustering algorithms for data visualization and alert observation.",
-                TechStack = new [] { "PHP", "Slim", "JS", "Bootstrap", "Google Charts", "MySQL" },
-                Links = new []
-                {
-                    new
-                    {
-                        Display = "Github",
-                        Href = "https://github.com/oskar-anderson/Tempsens"
-                    }
-                },
-                Image = new
-                {
-                    Src = "/img/tempsens_version_1.1.2_thumbnail_h400.png",
-                    Alt = "tempsens"
-                },
-                ReadMoreLink = "Posts/Sirowa"
-            };
-            var maanteeametTimescanner = new
-            {
-                Title = "Maanteeamet Timescanner",
-                Description = @"Developed a web scraper for getting info from Maanteeamet e-service about available driving exam times.",
-                TechStack = new [] { "Python", "Selenium" },
-                Links = new []
-                {
-                    new
-                    {
-                        Display = "Github",
-                        Href = "https://github.com/oskar-anderson/maanteeamet-timescanner"
-                    }
-                },
-                Image = new
-                {
-                    Src = "/img/maanteeamet_timescanner_used_tech.png",
-                    Alt = "Maanteeamet Timescanner"
-                },
-                ReadMoreLink = "Posts/MaanteeametTimescanner"
-            };
-    
-            var projects = new [] { tempsens, maanteeametTimescanner };
-        }
         <div>
-            @for(var i = 0; i < projects.Length; i++)
+            @for(var i = 0; i < Model.Projects.Length; i++)
             {
-                var project = projects[i];
+                var project = Model.Projects[i];
                 var columnClass = i % 2 == 0 ? "flex-column" : "flex-column-reverse";
                 <div class="d-flex flex-md-row gap-3 mb-2">
                     <div class="col-12 col-md-6 d-flex justify-content-center">
@@ -121,7 +75,7 @@
                                 <a href="@link.Href">@link.Display</a>
                             }
                         </div>
-                        <a class="btn btn-primary" href="@tempsens.ReadMoreLink">Read More</a>
+                        <a class="btn btn-primary" href="@project.ReadMoreLink">Read More</a>
                     </div>
                     @if (i % 2 == 0)
                     {
