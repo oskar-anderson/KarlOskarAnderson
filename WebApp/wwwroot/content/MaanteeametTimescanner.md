@@ -54,7 +54,7 @@ python ./schedule_checker.py
 The program is going to open Google Chrome browser though Selenium WebDriver and automatically navigate to Maanteeamet e-service.
 The program will then continue to open and close a model window that provides available driving exams across Estonia.
 This information is parsed and email will be sent to the user about any driving exam times in the specified cities.
-Email sending is done though Gmail with Python SMTP library using only 7 lines of code.
+Email sending is done though Gmail with Python SMTP library.
 The user will then receive an email like this.
 
 ^^^

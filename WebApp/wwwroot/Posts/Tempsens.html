@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/intellij-light.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 
-    <link rel="stylesheet" href="/css/site.css?v=z_yPnGXEDPdLNMqtq2fKZSGc228uZM9iw1UiMSgFb3k" />
+    <link rel="stylesheet" href="/css/site.css?v=XQ6WKHaGK7wDs4XAi_CZZnvCOghp9xq_GwbVPX1ufzg" />
 </head>
 <body style="margin: 0; padding: 0;   display: flex;
                                             min-height: 100vh;
@@ -23,7 +23,7 @@
 
     <div class="py-3 background-image-primary">
     <div class="header-container flex-lg-col-6">
-        <h1 class="mx-4" style="margin-bottom: 0; text-align: center; font-size: 1.5em;">
+        <h1 class="mx-4 my-0" style="margin-bottom: 0; text-align: center; font-size: 1.5em;">
             <a style="text-decoration: none" href="/">Karl Oskar Anderson</a>
         </h1>
         <nav class="d-flex justify-content-center">
@@ -46,7 +46,7 @@
         
 <div class="content-container px-4">
     <div class="mt-5 mb-3">
-        <h3 class="fw-semibold">Tempsens</h3>
+        <h3 class="fw-semibold">Tempsens - Sirowa</h3>
     </div>
     <p>
         <p>Developed entire full stack Sirowa warehouse temperature monitoring web application named Tempsens to monitor product storage compliance with temperature requirements.
@@ -107,10 +107,11 @@ This means reducing time complexity from O(n^2) to O(n) by making use of ordered
 <pre><code class="language-js">function filterSortedArrayValuesBetweenDates(sortedByDateObjArr, before, after, low) {
     // sortedByDateObjArr.filter(x =&gt; before &lt;= x.date &amp;&amp; after &gt; x.date);  // too slow
     let result = [];
-    for (; low &lt; sortedByDateObjArr.length; low++) {
+    while (low &lt; sortedByDateObjArr.length) {
         let obj = sortedByDateObjArr[low];
         if (after &lt;= obj.date) break;
         if (before &lt;= obj.date) result.push(obj);
+        low++;
     }
     return {
         result: result,

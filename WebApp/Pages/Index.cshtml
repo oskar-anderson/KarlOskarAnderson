@@ -24,7 +24,7 @@
 
 <div class="content-container-lg">
     <div class="py-5">
-        <h2 class="pb-5">Projects</h2>
+        <h2 class="pb-5 my-0">Projects</h2>
         
         <div>
             @for(var i = 0; i < Model.Projects.Length; i++)
@@ -35,13 +35,13 @@
                     <div class="col-12 col-md-6 d-flex justify-content-center">
                         @if (i % 2 != 1)
                         {
-                            <h4 class="fw-semibold">@project.Title</h4>
+                            <h4 class="mt-0 fw-semibold">@project.Title</h4>
                         }
                     </div>
                     <div class="col-12 col-md-6 d-flex justify-content-center">
                         @if (i % 2 == 1)
                         {
-                            <h4 class="fw-semibold">@project.Title</h4>
+                            <h4 class="mt-0 fw-semibold">@project.Title</h4>
                         }
                     </div>
                 </div>
@@ -68,13 +68,16 @@
                                 }
                             </ul>
                         </div>
-                        <div class="my-3">
-                            <span class="fw-semibold">Link:</span>
-                            @foreach (var link in @project.Links)
-                            {
-                                <a href="@link.Href">@link.Display</a>
-                            }
-                        </div>
+                        @if (project.Links.Any())
+                        {
+                            <div class="my-3">
+                                <span class="fw-semibold">Link:</span>
+                                @foreach (var link in @project.Links)
+                                {
+                                    <a href="@link.Href">@link.Display</a>
+                                }
+                            </div>
+                        }
                         <a class="btn btn-primary" href="@project.ReadMoreLink">Read More</a>
                     </div>
                     @if (i % 2 == 0)

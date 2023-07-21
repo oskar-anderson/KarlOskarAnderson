@@ -1,6 +1,6 @@
 ---
 {
-    "Title": "Tempsens",
+    "Title": "Tempsens - Sirowa",
     "Description": "Developed a full stack warehouse temperature and humidity monitoring system. Implemented SOAP and REST APIs for backend and chart visualization for frontend. Implemented binning and clustering algorithms for data visualization and alert observation.",
     "TechStack": [
         "PHP", 
@@ -94,10 +94,11 @@ This means reducing time complexity from O(n^2) to O(n) by making use of ordered
 function filterSortedArrayValuesBetweenDates(sortedByDateObjArr, before, after, low) {
     // sortedByDateObjArr.filter(x => before <= x.date && after > x.date);  // too slow
     let result = [];
-    for (; low < sortedByDateObjArr.length; low++) {
+    while (low < sortedByDateObjArr.length) {
         let obj = sortedByDateObjArr[low];
         if (after <= obj.date) break;
         if (before <= obj.date) result.push(obj);
+        low++;
     }
     return {
         result: result,

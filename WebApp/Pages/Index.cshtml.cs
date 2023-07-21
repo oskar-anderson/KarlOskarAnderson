@@ -18,11 +18,16 @@ public class IndexModel : PageModel
         using var tempsensReader = new StreamReader(tempsensPath);
         var tempsensMetadata = Metadata.ParseMetadata(tempsensReader.ReadToEnd());
             
+        var charonPath = Path.Combine(_environment.ContentRootPath, "wwwroot", "content", "Charon.md");
+        using var charonReader = new StreamReader(charonPath);
+        var charonMetadata = Metadata.ParseMetadata(charonReader.ReadToEnd());
+        
         var maanteeametPath = Path.Combine(_environment.ContentRootPath, "wwwroot", "content", "MaanteeametTimescanner.md");
         using var maanteeametReader = new StreamReader(maanteeametPath);
         var maanteeametMetadata = Metadata.ParseMetadata(maanteeametReader.ReadToEnd());
+        
 
-        Projects = new[] { tempsensMetadata, maanteeametMetadata };
+        Projects = new[] { tempsensMetadata, charonMetadata, maanteeametMetadata };
     }
 
     public void OnGet()
