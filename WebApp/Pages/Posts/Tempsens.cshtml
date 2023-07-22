@@ -1,12 +1,12 @@
 @page
 @model WebApp.Pages.Posts.Tempsens
 @{
-    ViewData["Title"] = "Tempsens";
+    ViewData["Title"] = Model.PostPage.Metadata.Title;
 }
 
 <div class="content-container px-4">
     <div class="mt-5 mb-3">
-        <h3 class="fw-semibold">@Model.PostPage.Metadata.Title</h3>
+        <h2>@Model.PostPage.Metadata.Title</h2>
     </div>
     <p>
         @Html.Raw(Model.PostPage.PageContent)

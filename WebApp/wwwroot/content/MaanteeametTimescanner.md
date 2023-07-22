@@ -27,7 +27,7 @@ The program is written in Python with Selenium browser API and using Gmail SMTP.
 ![Used technologies](../img/maanteeamet_timescanner_used_tech.png)
 ^^^ Technologies used.
 
-#### About
+### About
 
 This program was developed because Maanteeamet only allows reserving driving exams 2 months in advance and as a result available times were scarce.
 There were 2 primary sources of new available times:
@@ -38,7 +38,7 @@ There were 2 primary sources of new available times:
 The bloom of underground markets, like Facebook exam selling groups, made it even more difficult for legitimate users to register for a driving exam.
 Since driving exams in these circles regularly went up to 80€, I found it economically more reasonable to develop my own solution.
 
-#### The Solution
+### The Solution
 
 A automated web scraper for extracting available driving exam times was built.
 
@@ -63,7 +63,7 @@ The user will then receive an email like this.
 
 The user can then choose to either register for the exam or ignore it.
 
-#### Results
+### Results
 
 I was able to get a driving exam time with this program in just 5 hours.
 The program also became popular among my peers, with multiple friends asking me to share the program with them so they too could get their driving licenses.

@@ -1,6 +1,6 @@
 ---
 {
-    "Title": "Tempsens - Sirowa",
+    "Title": "Tempsens",
     "Description": "Developed a full stack warehouse temperature and humidity monitoring system. Implemented SOAP and REST APIs for backend and chart visualization for frontend. Implemented binning and clustering algorithms for data visualization and alert observation.",
     "TechStack": [
         "PHP", 
@@ -37,7 +37,7 @@ Portable sensors can be connected to user machine by mini-USB.
 Sensor data can then be downloaded as a CSV file though Comet Vision application.
 The CSV can subsequently be uploaded in Tempsens front-end application that uses REST API internally for saving the parsed data.
 
-#### Data flow diagram
+### Data flow diagram
 
 ^^^
 ![Tempsens application flow diagram.](../img/tempsens-logic-diagram-3.png)
@@ -60,7 +60,7 @@ Internally sensor create, update and delete operations and uploading parsed CSV 
 The application routing is implemented with Slim library and charting is done with Google Charts.
 Bootstrap is used for interactivity like modals and collapsible elements. 
 
-#### Algorithms
+### Algorithms
 
 Application uses binning and clustering algorithms to help visualize data. 
 
@@ -150,7 +150,7 @@ This is what the final result looks like in the UI.
 ![List of sensor alerts.](../img/tempsens-alerts.png)
 ^^^ List of sensor alerts.
 
-#### Last words
+### Last words
 
 The finished application solved all business requirements needed to overview warehouse temperature.
 
