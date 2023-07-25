@@ -1,7 +1,4 @@
 @page
 @model WebApp.Pages.Posts.MaanteeametTimescanner
-@{
-    ViewData["Title"] = Model.PostPage.Metadata.Title;
-}
 
-<partial name="_PostContent" model="Model" />
+<partial name="_PostContent" model="Model.PostPage" />

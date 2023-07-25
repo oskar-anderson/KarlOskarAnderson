@@ -6,10 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddMvc();
-builder.Services.Configure<RazorViewEngineOptions>(options =>
-{
-    options.PageViewLocationFormats.Add("~/Pages/Partials/{0}" + RazorViewEngine.ViewExtension);
-});
 builder.Services.AddSingleton<IStaticPagesInfoProvider>(
     new StaticPagesInfoProvider(
         new PageInfo[]
