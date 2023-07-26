@@ -1,5 +1,4 @@
 using AspNetStatic;
-using AspNetStatic.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,12 +40,9 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.GenerateStaticPages(
-    new GenerateStaticPagesOptions()
-    {
-        DestinationRoot = app.Environment.WebRootPath,
-        DontOptimizeContent = true,
-        AlwaysDefaultFile = true,
-        ExitWhenDone = args.Contains("exit")
-    }
+    app.Environment.WebRootPath,
+    dontUpdateLinks: true, 
+    alwaysDefaultFile: true,
+    exitWhenDone: args.Contains("exit")
 );
 app.Run();

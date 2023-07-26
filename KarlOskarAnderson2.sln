@@ -2,10 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{04B9401C-4EA8-4B70-BF0A-5D7ED0E01111}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetStatic", "AspNetStatic\src\AspNetStatic\AspNetStatic.csproj", "{C7A06B9B-3F85-46F8-8B40-50EDA43E01FC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.AspNetStatic", "AspNetStatic\src\Tests.AspNetStatic\Tests.AspNetStatic.csproj", "{D3170588-D932-4FD6-85B0-13CDA2256301}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,13 +12,5 @@ Global
 		{04B9401C-4EA8-4B70-BF0A-5D7ED0E01111}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04B9401C-4EA8-4B70-BF0A-5D7ED0E01111}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04B9401C-4EA8-4B70-BF0A-5D7ED0E01111}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7A06B9B-3F85-46F8-8B40-50EDA43E01FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7A06B9B-3F85-46F8-8B40-50EDA43E01FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7A06B9B-3F85-46F8-8B40-50EDA43E01FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7A06B9B-3F85-46F8-8B40-50EDA43E01FC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3170588-D932-4FD6-85B0-13CDA2256301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3170588-D932-4FD6-85B0-13CDA2256301}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3170588-D932-4FD6-85B0-13CDA2256301}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3170588-D932-4FD6-85B0-13CDA2256301}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
