@@ -46,3 +46,4 @@ app.GenerateStaticPages(
     exitWhenDone: args.Contains("exit")
 );
 app.Run();
+// 6
