@@ -26,11 +26,11 @@ jobs:
       - name: pwd
         run: pwd
 
-      - name: ls -a
-        run: ls -a -r
+      - name: tree
+        run: sudo apt install tree && tree
 
       - name: Generate static pages
-        run: dotnet run --project WebApp -- exit
+        run: dotnet run -- exit
         working-directory: ./WebApp
 
 
@@ -39,4 +39,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./webapp/wwwroot
+          publish_dir: ./WebApp/wwwroot
