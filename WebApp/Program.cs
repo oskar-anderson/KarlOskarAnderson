@@ -1,20 +1,27 @@
 using AspNetStatic;
 using AspNetStatic.Models;
-using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddMvc();
+var postsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "Pages", "Posts");
+var relativePaths = Directory.GetFiles(postsDirectoryPath, "*.cshtml", SearchOption.AllDirectories)
+    .Select(x => Path.GetRelativePath(postsDirectoryPath, x))
+    .ToList();
+var relativePathsNormalized = relativePaths.Select(x => x
+    .Replace("\\", "/")
+    .Replace(".cshtml", "")
+    ).ToList();
+var postPageInfo = relativePathsNormalized.Select(x => 
+    new PageInfo("/Posts/" + x)
+    ).ToList();
+var pageInfoList = new List<PageInfo> { new("/Index") };
+pageInfoList.AddRange(postPageInfo);
+
 builder.Services.AddSingleton<IStaticPagesInfoProvider>(
-    new StaticPagesInfoProvider(
-        new PageInfo[]
-        {
-            new("/Index"),
-            new("/Posts/Tempsens"),
-            new("/Posts/MaanteeametTimescanner"),
-        }
-    ));
+    new StaticPagesInfoProvider(pageInfoList)
+    );
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
@@ -37,7 +44,8 @@ app.GenerateStaticPages(
     new GenerateStaticPagesOptions()
     {
         DestinationRoot = GenerateStaticPagesOptions.ParseOptions(args, app.Environment.WebRootPath).DestinationRoot,
-        DontOptimizeContent = true
+        DontOptimizeContent = true,
+        AlwaysDefaultFile = true,
     }
 );
 app.Run();

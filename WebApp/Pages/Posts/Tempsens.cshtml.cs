@@ -12,7 +12,7 @@ public class Tempsens : PageModel
     public Tempsens(IWebHostEnvironment environment)
     {
         _environment = environment;
-        var path = Path.Combine(_environment.ContentRootPath, "wwwroot", "content", "Tempsens.md");
+        var path = Path.Combine(_environment.ContentRootPath, "wwwroot", "static", "content", "Tempsens.md");
         PostPage = new BasePostPage(path);
     }
     
