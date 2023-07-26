@@ -23,12 +23,6 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
 
-      - name: pwd
-        run: pwd
-
-      - name: tree
-        run: sudo apt install tree && tree
-
       - name: Generate static pages
         run: dotnet run -- exit
         working-directory: ./WebApp

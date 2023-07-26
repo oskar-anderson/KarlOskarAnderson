@@ -15,7 +15,7 @@ var relativePathsNormalized = relativePaths.Select(x => x
 var postPageInfo = relativePathsNormalized.Select(x => 
     new PageInfo("/Posts/" + x)
     ).ToList();
-var pageInfoList = new List<PageInfo> { new("/Index") };
+var pageInfoList = new List<PageInfo> { new("/index") };
 pageInfoList.AddRange(postPageInfo);
 
 builder.Services.AddSingleton<IStaticPagesInfoProvider>(
@@ -46,4 +46,3 @@ app.GenerateStaticPages(
     exitWhenDone: args.Contains("exit")
 );
 app.Run();
-// 7 Settings -> Actions -> General -> Workflow permissions
