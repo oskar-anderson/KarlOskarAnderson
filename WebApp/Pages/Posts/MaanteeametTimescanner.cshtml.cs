@@ -12,7 +12,7 @@ public class MaanteeametTimescanner : PageModel
     public MaanteeametTimescanner(IWebHostEnvironment environment)
     {
         _environment = environment;
-        var path = Path.Combine(_environment.ContentRootPath, "wwwroot", "content", "MaanteeametTimescanner.md");
+        var path = Path.Combine(_environment.ContentRootPath, "wwwroot", "static", "content", "MaanteeametTimescanner.md");
         PostPage = new BasePostPage(path);
     }
     

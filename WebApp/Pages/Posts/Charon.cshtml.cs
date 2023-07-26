@@ -12,7 +12,7 @@ public class Charon : PageModel
     public Charon(IWebHostEnvironment environment)
     {
         _environment = environment;
-        var path = Path.Combine(_environment.ContentRootPath, "wwwroot", "content", "Charon.md");
+        var path = Path.Combine(_environment.ContentRootPath, "wwwroot", "static", "content", "Charon.md");
         PostPage = new BasePostPage(path);
     }
     
