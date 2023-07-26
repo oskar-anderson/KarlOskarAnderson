@@ -46,3 +46,4 @@ app.GenerateStaticPages(
     exitWhenDone: args.Contains("exit")
 );
 app.Run();
+// 7 Settings -> Actions -> General -> Workflow permissions
