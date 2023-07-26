@@ -23,8 +23,16 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
 
+      - name: pwd
+        run: pwd
+
+      - name: ls -a
+        run: ls -a -r
+
       - name: Generate static pages
-        run: dotnet run --project webapp -- exit
+        run: dotnet run --project WebApp -- exit
+        working-directory: ./WebApp
+
 
       # Push our generated site to our gh-pages branch
       - name: Deploy

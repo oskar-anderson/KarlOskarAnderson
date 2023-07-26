@@ -41,7 +41,7 @@ app.UseAuthorization();
 app.MapRazorPages();
 app.GenerateStaticPages(
     app.Environment.WebRootPath,
-    dontUpdateLinks: true, 
+    dontOptimizeContent: true, 
     alwaysDefaultFile: true,
     exitWhenDone: args.Contains("exit")
 );
