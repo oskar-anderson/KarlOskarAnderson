@@ -43,9 +43,10 @@ app.MapRazorPages();
 app.GenerateStaticPages(
     new GenerateStaticPagesOptions()
     {
-        DestinationRoot = GenerateStaticPagesOptions.ParseOptions(args, app.Environment.WebRootPath).DestinationRoot,
+        DestinationRoot = app.Environment.WebRootPath,
         DontOptimizeContent = true,
         AlwaysDefaultFile = true,
+        ExitWhenDone = args.Contains("exit")
     }
 );
 app.Run();
