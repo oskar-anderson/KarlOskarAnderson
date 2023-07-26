@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title> - Karl Oskar Anderson</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon3.ico">
+    
+    <link rel="stylesheet" href="/static/lib/bootstrap-5.3.0-dist/css/bootstrap.css" />
+    
+    <link rel="stylesheet" href="/static/css/fontawesome-free-6.4.0-web/css/fontawesome.css" />
+    <link rel="stylesheet" href="/static/css/fontawesome-free-6.4.0-web/css/brands.css" />
+    <link rel="stylesheet" href="/static/css/fontawesome-free-6.4.0-web/css/solid.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/intellij-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="/static/css/site.css?v=XQ6WKHaGK7wDs4XAi_CZZnvCOghp9xq_GwbVPX1ufzg" />
+</head>
+<body style="margin: 0; padding: 0;   display: flex;
+                                            min-height: 100vh;
+                                            flex-direction: column;
+                                            justify-content: flex-start;">
+
+    <div class="py-3 background-image-primary">
+    <div class="header-container flex-lg-col-6">
+        <h1 class="mx-4 my-0" style="margin-bottom: 0; text-align: center; font-size: 1.5em;">
+            <a style="text-decoration: none" href="/">Karl Oskar Anderson</a>
+        </h1>
+        <nav class="d-flex justify-content-center">
+            <ul class="navbar-nav flex-row mr-auto">
+                <li class="nav-item active mx-3 flex-row">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item mx-3 flex-row">
+                    <a class="nav-link" href="/">Resume</a>
+                </li>
+                <li class="nav-item mx-3 flex-row">
+                    <a class="nav-link" href="">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div></partial>
+
+    <main b-1lnhnt7yf2 role="main" class="pb-3">
+        
+
+<div class="content-container px-4">
+    <div class="mt-5 mb-3">
+        <h2>Charon</h2>
+    </div>
+    <p>
+        <p>Charon is a plugin for integrating Moodle learning management system with an automated tester for managing student programming assignments submissions, feedback, defense registrations and grading.
+This plugin is used actively by TalTech programming teachers, teacher assistants and students.</p>
+<h3 id="background">Background</h3>
+<p>When students commit into their repository a git hook sends a request to Charon that will forward it to a tester.
+The tester runs the student code against teachers tests that will return info on passed tests and code style back to Charon backend where it will be processed and saved into a database.
+The students may then have to defend their assignments to receive a grade.</p>
+<p>The tech stack consist of a Laravel backend that provides MVC for Moodle and API for frontend.
+The backend mainly provides APIs for communication between MariaDB and Vue frontend, but also interacting with Moodle, sending out emails and gluing together Gitlab/Github and Arete testing framework services.
+The frontend is mostly done in Vue. Frontend provides a grading environment for teachers to check student submissions along with attached files, leave comments and give points.
+The frontend provides a better user experience then would be available through Moodle itself, by showing submission data about single student.</p>
+<p>This system was built initially as a bachelors degree thesis in 2017.
+You can read more about it <a href="https://digikogu.taltech.ee/et/item/b628d504-57e3-4d90-9c60-4bcd6bea3d61">here</a>.</p>
+<h3 id="what-i-did">What I did</h3>
+<p>I was part of an 5 member fullstack agile Scrum development team.
+Our work process was divided into 2 week sprints with individual demos and sprint retros.
+Our agile was a mix of Kanban and XP (pair programming) depending on circumstances.</p>
+<p>My work broadly fits into 3 categories:</p>
+<ul>
+<li>Solving issues</li>
+<li>Doing merge reviews</li>
+<li>Finding bugs</li>
+</ul>
+<p>Bugs were something that I stumbled upon completely by accident or taking educated guesses on where things could break.
+Here some of the bugs I found:</p>
+<ul>
+<li>String injection on PHP to JS variable assignment. Can you spot the mistake? <code>window.course_name = '{!! $course-&gt;fullname !!}';</code></li>
+<li>Rich text input not stripping out script tags is XSS vulnerability</li>
+<li>Missing favicon</li>
+<li>UI mismatch between different pages and components</li>
+<li>Database tables missing foreign keys</li>
+<li>Data seeding logic not matching application rules</li>
+<li>Error accessing hierarchy list at 0 index caused by always expecting list to contain root node</li>
+<li>Inconsistent use of spinners</li>
+</ul>
+<p>During sprints we worked as a team to improve different aspects of the application:</p>
+<p><strong>Feature based development</strong> -
+Implement moderator role.
+Moderators are allowed to change Charon configuration feature flags.
+Feature based development accelerated product release cycle as the release process no longer has to go through Moodle team and bigger epics can now be release partially.</p>
+<p><strong>Better activity messages</strong> -
+Reduce number of messages generated when leaving feedback and grading students to improve overall message quality.
+This would make it easier to track TA (teacher assistant) activity and detect malicious use (giving better grades to friends).</p>
+
+    </p>
+</div>
+    </main>
+
+    <footer class="page-footer-section secondary background-image-secondary" style="margin-top: auto;">
+    <div class="mx-4">
+        <div class="row">
+            <div class="col-12 py-2 d-flex justify-content-between align-items-center">
+                <div>© 2023 by Karl Oskar Anderson, Powered by .NET 7.0</div>
+                <div>
+                    <a href="https://github.com/oskar-anderson/" class="btn" style="border-radius: 50%; background-color: #266DD3; color: white">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/karl-oskar-anderson" class="btn" style="border-radius: 50%; background-color: #266DD3; color: white">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:andersonkarloskar@gmail.com" class="btn btn-fab btn-primary fg-white" style="border-radius: 50%; background-color: #266DD3; color: white">
+                        <i class="fa-regular fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer></partial>
+
+
+<script src="/static/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+
+
+</body>
+<script>hljs.highlightAll();</script>
+</html>
