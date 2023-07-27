@@ -19,7 +19,7 @@
     ],
     "Image":
     {
-        "Src": "../../static/img/posts/charon/charon-popup-with-favicon.png",
+        "Src": "static/img/posts/charon/charon-popup-with-favicon.png",
         "Alt": "Charon popup"
     },
     "ReadMoreLink": "Posts/Charon"
