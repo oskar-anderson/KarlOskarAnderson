@@ -13,6 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="wwwroot\KarlOskarAnderson" />
       <Folder Include="wwwroot\static" />
     </ItemGroup>
 

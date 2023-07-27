@@ -6,11 +6,11 @@
     <title>@ViewData["Title"] - Karl Oskar Anderson</title>
     <link rel="icon" type="image/x-icon" href="~/static/img/favicon3.ico">
     
-    <link rel="stylesheet" href="~/static/lib/bootstrap-5.3.0-dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="@Url.Content("/static/lib/bootstrap-5.3.0-dist/css/bootstrap.css")" />
     
-    <link rel="stylesheet" href="~/static/css/fontawesome-free-6.4.0-web/css/fontawesome.css"/>
+    <link rel="stylesheet" href="@Url.Content("/static/css/fontawesome-free-6.4.0-web/css/fontawesome.css")" />
     <link rel="stylesheet" href="~/static/css/fontawesome-free-6.4.0-web/css/brands.css"/>
-    <link rel="stylesheet" href="~/static/css/fontawesome-free-6.4.0-web/css/solid.css"/>
+    <link rel="stylesheet" href="/static/css/fontawesome-free-6.4.0-web/css/solid.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/intellij-light.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 
@@ -30,7 +30,11 @@
     <partial name="Footer"></partial>
 
 
-<script src="~/static/js/site.js" asp-append-version="true"></script>
+<script src="~/static/js/site.js"></script>
+<script src="/static/js/site2.js"></script>
+<script src="static/js/site3.js"></script>
+<script src="./static/js/site4.js"></script>
+<script src="../static/js/site5.js"></script>
 
 @await RenderSectionAsync("Scripts", required: false)
 </body>
