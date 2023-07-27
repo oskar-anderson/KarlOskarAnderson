@@ -14,7 +14,7 @@
     ],
     "Image":
     {
-        "Src": "/static/img/posts/maanteeamet-timescanner/maanteeamet_timescanner_used_tech.png",
+        "Src": "static/img/posts/maanteeamet-timescanner/maanteeamet_timescanner_used_tech.png",
         "Alt": "Maanteeamet Timescanner"
     },
     "ReadMoreLink": "Posts/MaanteeametTimescanner"
@@ -24,7 +24,7 @@ Developed a web scraper for getting info from Maanteeamet e-service about availa
 The program is written in Python with Selenium browser API and using Gmail SMTP.
 
 ^^^
-![Used technologies](/static/img/posts/maanteeamet-timescanner/maanteeamet_timescanner_used_tech.png)
+![Used technologies](static/img/posts/maanteeamet-timescanner/maanteeamet_timescanner_used_tech.png)
 ^^^ Technologies used.
 
 ### About
@@ -58,7 +58,7 @@ Email sending is done though Gmail with Python SMTP library.
 The user will then receive an email like this.
 
 ^^^
-![Sent email](/static/img/posts/maanteeamet-timescanner/available-MTA-driving-exam-time-found.png)
+![Sent email](static/img/posts/maanteeamet-timescanner/available-MTA-driving-exam-time-found.png)
 ^^^ Sent email.
 
 The user can then choose to either register for the exam or ignore it.
