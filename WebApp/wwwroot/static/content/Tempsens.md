@@ -18,7 +18,7 @@
     ],
     "Image":
     {
-        "Src": "../../static/img/posts/tempsens/tempsens_version_1.1.2_thumbnail_h400.png",
+        "Src": "static/img/posts/tempsens/tempsens_version_1.1.2_thumbnail_h400.png",
         "Alt": "tempsens"
     },
     "ReadMoreLink": "Posts/Tempsens"
@@ -28,7 +28,7 @@ Developed entire full stack Sirowa warehouse temperature monitoring web applicat
 Monitoring is required by Ravimiamet for storage of medicinal goods.
 
 ^^^
-![Tempsens main user interface.](../../static/img/posts/tempsens/tempsens_version_1.1.2_thumbnail.jpg)
+![Tempsens main user interface.](static/img/posts/tempsens/tempsens_version_1.1.2_thumbnail.jpg)
 ^^^ Tempsens main user interface.
 
 Two types of Comet sensors are used: stationary and portable.
@@ -40,7 +40,7 @@ The CSV can subsequently be uploaded in Tempsens front-end application that uses
 ### Data flow diagram
 
 ^^^
-![Tempsens application flow diagram.](../../static/img/posts/tempsens/tempsens-logic-diagram-3.png)
+![Tempsens application flow diagram.](static/img/posts/tempsens/tempsens-logic-diagram-3.png)
 ^^^ Tempsens application flow diagram.
 
 Flow of the application for stationary sensors consists of data being sent to Tempsens application through SOAP API and the application in turn saving it a MySQL/MariaDB database.
@@ -147,7 +147,7 @@ public function createChain(array $sortedByDateObjArr, callable $isPartOfSameCha
 This is what the final result looks like in the UI. 
 
 ^^^
-![List of sensor alerts.](../../static/img/posts/tempsens/tempsens-alerts.png)
+![List of sensor alerts.](static/img/posts/tempsens/tempsens-alerts.png)
 ^^^ List of sensor alerts.
 
 ### Last words
